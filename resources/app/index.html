@@ -1,0 +1,136 @@
+<html>
+
+<head>
+  <title>Electron</title>
+  <meta charset="utf-8" />
+  <script type="text/javascript">
+    window.$ = window.JQuery = require('Theme/assets/js/jquery.js');
+    require('electron-cookies');
+    var LinvoDB = require("linvodb3");
+    LinvoDB.defaults.store = {
+      db: require("medeadown")
+    };
+    LinvoDB.dbPath = process.cwd() + '/db';
+  </script>
+  <!-- Bootstrap core CSS -->
+  <link href="Theme/dist/css/bootstrap.css" rel="stylesheet">
+
+  <!-- Boostrap Theme -->
+  <link href="Theme/css/skin.css" rel="stylesheet">
+  <link href="Theme/css/boostrap-overrides.css" rel="stylesheet">
+  <link href="Theme/css/theme.css" rel="stylesheet">
+  <link href="Theme/assets/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="Theme/assets/css/ezmark.css">
+  <link href="Theme/assets/css/animate-custom.css" rel="stylesheet">
+  <link href="Theme/assets/css/pushy.css" rel="stylesheet">
+
+  <script src="Theme/assets/js/modernizr-2.6.2.min.js"></script>
+  <script src="Theme/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="Theme/assets/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+  <script src="angular_1.2.9.min.js"></script>
+  <script>
+    var app = angular.module('app', []);
+  </script>
+  <script src="angular.js"></script>
+
+  </script>
+</head>
+
+<body ng-app="app">
+  <div id="info">
+    <div class="alert alert-info">
+      <strong>Iniciando...</strong>
+    </div>
+  </div>
+  <div class="tab-info">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#profile" data-toggle="tab">Sync Status</a></li>
+      <li class=""><a href="#profile2" data-toggle="tab">Conf SIGE Cloud</a></li>
+      <li class=""><a href="#messages2" data-toggle="tab">Conf Woocommerce</a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content add-shadow">
+      <div class="tab-pane active" id="profile">
+        <div style="display:block; width:100%; min-height:350px;" id="consolestatus"></div>
+      </div>
+      <div class="tab-pane" id="profile2" ng-controller="CtrlSIGE">
+        <div class="row col-lg-12">
+          <button type="button" style="float:right;" class="btn btn-default btn-lg" ng-click="save()">Salvar</button>
+        </div>
+        <h4>Dados Autenticação</h4>
+        <div class="row col-lg-12">
+          <div class="form-group col-xs-12">
+            <label>APIKey</label>
+            <input class="form-control" type="text" ng-model="SIGE.APIKey">
+          </div>
+          <div class="form-group col-xs-6">
+            <label>APIApp</label>
+            <input class="form-control" type="text" ng-model="SIGE.APIApp">
+          </div>
+          <div class="form-group col-xs-6">
+            <label>APIUser</label>
+            <input class="form-control" type="text" ng-model="SIGE.APIUser">
+          </div>
+        </div>
+        <br/>
+        <h4>Dados Sincronização (Estes dados já devem estar cadastrados)</h4>
+        <div class="row col-lg-12">
+          <div class="form-group col-xs-6">
+            <label>Empresa</label>
+            <input class="form-control" type="text" ng-model="SIGE.Empresa">
+          </div>
+          <div class="form-group col-xs-6">
+            <label>Deposito</label>
+            <input class="form-control" type="text" ng-model="SIGE.Deposito">
+          </div>
+          <div class="form-group col-xs-6">
+            <label>Lançar no financeiro ?</label>
+            <input class="form-control data" type="checkbox" ng-model="SIGE.Lancar">
+          </div>
+          <div class="form-group col-xs-6">
+            <label>Plano de Contas</label>
+            <input class="form-control" type="text" ng-model="SIGE.PlanoContas">
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="messages2" ng-controller="CtrlWoocomerce">
+        <div class="row col-lg-12">
+          <button type="button" style="float:right;" class="btn btn-default btn-lg" ng-click="save()">Salvar</button>
+        </div>
+        <h4>Dados Autenticação</h4>
+        <div class="row col-lg-12">
+          <div class="form-group col-xs-6">
+            <label>Custumer Key</label>
+            <input class="form-control" type="text" ng-model="Woocommerce.CK">
+          </div>
+          <div class="form-group col-xs-6">
+            <label>Custumer Secret Key</label>
+            <input class="form-control" type="text" ng-model="Woocommerce.CS">
+          </div>
+        </div>
+        <br/>
+        <h4>Dados Sincronização</h4>
+        <div class="row col-lg-12">
+          <div class="form-group col-xs-6">
+            <label>URL Loja</label>
+            <input class="form-control" type="text" ng-model="Woocommerce.URL">
+          </div>
+          <div class="form-group col-xs-6">
+            <label>SSL ?</label>
+            <input class="form-control data" type="checkbox" ng-model="Woocommerce.SSL">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- / panes -->
+  </div>
+  <script type="text/javascript" src="sincronizador.js"></script>
+  <script>
+    setTimeout(function() {
+      Sincronizar();
+    }, 5000);
+  </script>
+</body>
+
+</html>
