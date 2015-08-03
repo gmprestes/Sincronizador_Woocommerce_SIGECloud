@@ -1,0 +1,11 @@
+{
+  "name": "sincronizadorSIGE_Woocommerce",
+  "productName": "SincronizadorSIGE_Woocommerce",
+  "main": "main.js",
+  "dependencies": {
+    "electron-cookies": "^1.1.0",
+    "linvodb3": "^3.10.0",
+    "medeadown": "^1.1.7",
+    "woocommerce": "^1.0.3"
+  }
+}
